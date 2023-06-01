@@ -23,8 +23,22 @@ class CountryViewModel @Inject constructor(
     var countryUiState: CountryUiState by mutableStateOf(CountryUiState.Loading)
         private set
 
+    var searchWidgetState by mutableStateOf(SearchWidgetState.CLOSED)
+        private set
+
+    var searchTextState by mutableStateOf("")
+        private set
+
     init {
         getCountries()
+    }
+
+    fun updateSearchWidgetState(newValue: SearchWidgetState) {
+        searchWidgetState = newValue
+    }
+
+    fun updateSearchTextState(newValue: String) {
+        searchTextState = newValue
     }
 
     private fun getCountries() {
@@ -59,4 +73,9 @@ sealed class CountryUiState {
     data class Success(val countries: List<Country>) : CountryUiState()
     object Error: CountryUiState()
     object Loading : CountryUiState()
+}
+
+enum class SearchWidgetState {
+    OPENED,
+    CLOSED
 }

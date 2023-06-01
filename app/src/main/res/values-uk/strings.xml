@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="radio_station_count">Радіостанцій %d</string>
+    <string name="radio_station_count">"Радiостанцiй: %d "</string>
     <string name="loading_failed">Помилка завантаження</string>
     <string name="error_screen_retry">Повторити</string>
     <string name="loading_content_description">Завантаження</string>
+    <string name="search_prompt">Введiть текст для пошуку</string>
+    <string name="search_icon_description">Iконка пошуку</string>
+    <string name="close_icon_description">Iконка закриття</string>
+    <string name="search_appbar_header">Вибрано країн: %d</string>
 </resources>

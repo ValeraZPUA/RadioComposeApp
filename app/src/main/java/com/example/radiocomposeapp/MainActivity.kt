@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
             RadioComposeAppTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.background,
                 ) {
                     CountryListScreen()
                 }
