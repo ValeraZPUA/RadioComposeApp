@@ -10,8 +10,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.radiocomposeapp.R
 import com.example.radiocomposeapp.data.room.Country
 import com.example.radiocomposeapp.ui.viewmodels.CountryViewModel
 
@@ -52,7 +54,7 @@ fun CountryListItem(
                    modifier = Modifier.padding(start = 8.dp)
                 )
                 Text(
-                   text = "${country.stationCount} radio stations",
+                   text = stringResource(id = R.string.radio_station_count, country.stationCount),
                    style = MaterialTheme.typography.body2,
                    modifier = Modifier.padding(start = 8.dp)
                 )

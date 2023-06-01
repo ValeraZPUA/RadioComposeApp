@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="radio_station_count">Радіостанцій %d</string>
+    <string name="loading_failed">Помилка завантаження</string>
+    <string name="error_screen_retry">Повторити</string>
+    <string name="loading_content_description">Завантаження</string>
+</resources>

@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">RadioComposeApp</string>
+    <string name="app_name" translatable="false">RadioComposeApp</string>
+    <string name="radio_station_count">%d radio stations</string>
+    <string name="loading_failed">Failed to load</string>
+    <string name="error_screen_retry">Retry</string>
+    <string name="loading_content_description">Loading</string>
 </resources>
