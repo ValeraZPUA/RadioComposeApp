@@ -13,4 +13,7 @@ interface CountryDao {
 
     @Delete
     suspend fun deleteCountry(country: Country)
+
+    @Query("SELECT COUNT(*) FROM countries")
+    fun getCountOfCountries(): Flow<Int>
 }

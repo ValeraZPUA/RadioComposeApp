@@ -30,6 +30,10 @@ class CountryRepository @Inject constructor(
         countryDao.deleteCountry(country)
     }
 
+    fun getCountOfSelectedCountries(): Flow<Int> {
+        return countryDao.getCountOfCountries()
+    }
+
     private fun List<CountryResponse>.toCountryList(): List<Country> {
         return this.map { response ->
             Country(

@@ -8,8 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.radiocomposeapp.data.repository.CountryRepository
 import com.example.radiocomposeapp.data.room.Country
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,8 +16,6 @@ import javax.inject.Inject
 class CountryViewModel @Inject constructor(
     private val repository: CountryRepository
 ) : ViewModel() {
-
-    val countries: Flow<List<Country>> = repository.getCountries()
 
     var countryUiState: CountryUiState by mutableStateOf(CountryUiState.Loading)
         private set
@@ -28,6 +25,10 @@ class CountryViewModel @Inject constructor(
 
     var searchTextState by mutableStateOf("")
         private set
+
+    val countOfSelectedCountries: StateFlow<Int> = repository
+        .getCountOfSelectedCountries()
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
 
     init {
         getCountries()
@@ -41,13 +42,29 @@ class CountryViewModel @Inject constructor(
         searchTextState = newValue
     }
 
-    private fun getCountries() {
+    fun getCountries() {
         viewModelScope.launch {
             countryUiState = CountryUiState.Loading
 
             countryUiState = try {
                 val countries = repository.getCountries().first()
                 CountryUiState.Success(countries)
+            } catch (e: Exception) {
+                CountryUiState.Error
+            }
+        }
+    }
+
+    fun findCountry(query: String) {
+        viewModelScope.launch {
+            countryUiState = try {
+                val countries = repository.getCountries().first()
+                CountryUiState.Success(countries.filter {
+                    it.name.contains(
+                        query,
+                        ignoreCase = true
+                    )
+                })
             } catch (e: Exception) {
                 CountryUiState.Error
             }
